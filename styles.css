@@ -1,0 +1,432 @@
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg-light: #f4f4f4; 
+    --bg-content: #ffffff;
+    --text-dark: #333333;
+    --accent-color: #007bff; 
+    --accent-hover: #0056b3;
+    --border-color: #e0e0e0;
+    --font-stack: 'Mitr', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: 250px;
+    background-color: var(--bg-content);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+    border-right: 1px solid var(--border-color);
+    flex-shrink: 0; /* NEW: ป้องกันไม่ให้ยุบตัว */
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+    font-size: 1.5em;
+    color: var(--accent-color);
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li a {
+    display: block;
+    padding: 10px 0;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.sidebar li a:hover, .sidebar li a.active {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* --- Content --- */
+.content {
+    flex-grow: 1;
+    padding: 40px;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap; /* NEW: ห่อหุ้มใน Header */
+}
+
+.user-info {
+    font-size: 0.9em;
+    display: flex; 
+    align-items: center;
+    gap: 15px; 
+    flex-wrap: wrap; /* NEW: ห่อหุ้มใน User Info */
+    justify-content: flex-end; /* NEW: จัดไปทางขวา */
+}
+
+.user-info .logout-btn { 
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 5px 10px;
+    /* border: 1px solid var(--border-color); */
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-weight: normal;
+}
+
+.user-info .logout-btn:hover {
+    background-color: var(--bg-light); 
+    /* border-color: var(--accent-color); */
+    color: var(--accent-color);
+}
+
+h1 {
+    margin-bottom: 30px;
+    font-size: 2em;
+    color: var(--text-dark);
+}
+
+/* --- Product Cards --- */
+.product-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* NEW: จัดไปทางซ้าย */
+}
+
+.product-card {
+    background-color: var(--bg-content);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+.product-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.product-info {
+    padding: 15px;
+}
+
+.product-info h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.product-info p {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* --- Modal Styles --- */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--bg-content);
+    padding: 30px;
+    border-radius: 8px;
+    position: relative;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    color: #999;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-btn:hover {
+    color: var(--accent-color);
+}
+
+/* --- Form Styles --- */
+form {
+    padding: 0;
+    background: none;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+button {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--accent-hover);
+}
+
+.error-message {
+    color: #dc3545; 
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.success-message {
+    color: #28a745; 
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* --- Chat Message Styles --- */
+.chat-message {
+    margin-bottom: 10px; 
+    padding: 10px; 
+    border-radius: 8px;
+}
+
+.chat-message.user {
+    background-color: #d1e7dd; 
+    text-align: right;
+}
+
+.chat-message.admin {
+    background-color: #f8d7da; 
+    text-align: left;
+}
+
+.chat-sender-user {
+    color: green;
+}
+
+.chat-sender-admin {
+    color: red; 
+}
+
+.product-detail-img {
+    max-width: 100%; 
+    height: auto !important; 
+    width: auto !important;  
+    max-height: 200px; 
+    display: block; 
+}
+
+/* ======================================= */
+/* 📱 MEDIA QUERIES FOR MOBILE (<= 768px) */
+/* ======================================= */
+
+@media (max-width: 768px) {
+    
+    /* --- Body & Layout --- */
+    body {
+        flex-direction: column; /* เรียง Sidebar และ Content เป็นคอลัมน์ */
+    }
+
+    /* --- Sidebar --- */
+    .sidebar {
+        width: 100%; /* Sidebar เต็มความกว้าง */
+        padding: 15px 20px; /* ลด Padding บนล่าง */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        order: -1; /* NEW: ย้าย Sidebar ขึ้นไปด้านบน */
+    }
+    
+    .sidebar h2 {
+        margin-bottom: 15px;
+        font-size: 1.3em;
+    }
+    
+    .sidebar ul {
+        display: flex; /* จัดรายการเมนูแนวนอน */
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 0;
+    }
+
+    .sidebar li {
+        flex-shrink: 0;
+    }
+    
+    .sidebar li a {
+        padding: 5px 0; /* ลด Padding เมนู */
+        font-size: 0.9em;
+    }
+
+    /* ซ่อนเมนู Admin Tools ใน Sidebar เพื่อความเรียบง่าย (อาจใช้เมนู Hamburger ใน Production) */
+    .sidebar-group-title, .sidebar-group-box li {
+        /* display: none; */ /* ไม่ซ่อน, แต่ให้จัดเป็น Flex แทน */
+    }
+
+    /* --- Content & Header --- */
+    .content {
+        padding: 20px 15px; /* ลด Padding โดยรวม */
+    }
+
+    .header {
+        flex-direction: column; /* จัด Header เป็นคอลัมน์ */
+        align-items: flex-start;
+        gap: 10px;
+        justify-content: center;
+    }
+    
+    .user-info {
+        font-size: 0.8em;
+        gap: 10px;
+        justify-content: flex-start;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        font-size: 1.5em; /* ลดขนาดหัวข้อ */
+    }
+
+    /* --- Product Cards --- */
+    .product-grid {
+        justify-content: center; /* จัดสินค้าให้อยู่ตรงกลางบนมือถือ */
+    }
+    
+    .product-card {
+        width: 100%; /* การ์ดเต็มความกว้าง */
+        max-width: 350px;
+    }
+    
+    /* --- Product Detail Page (Custom Flex Layouts) --- */
+    div[style*="display: flex"] {
+        flex-direction: column; /* เปลี่ยน Flex เป็น Stack แนวตั้ง */
+        gap: 20px !important;
+    }
+    
+    .product-detail-img {
+        max-height: 250px; /* เพิ่มความสูงรูปเล็กน้อย */
+        width: 100% !important;
+        object-fit: contain;
+    }
+
+    /* --- Checkout & Admin Table Optimization --- */
+    
+    /* Force table to not be like a table */
+    table, thead, tbody, th, td, tr { 
+        display: block; 
+    }
+    
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    tr { border: 1px solid var(--border-color); margin-bottom: 15px; }
+    
+    td { 
+        /* Behave  like a "row" */
+        border: none !important;
+        border-bottom: 1px solid var(--border-color) !important; 
+        position: relative;
+        padding-left: 50% !important; 
+        text-align: right !important;
+        font-size: 0.9em;
+    }
+    
+    td:before { 
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+    
+    /* Label the data */
+    td:nth-of-type(1):before { content: "สินค้า:"; }
+    td:nth-of-type(2):before { content: "ราคา/หน่วย:"; }
+    td:nth-of-type(3):before { content: "จำนวน:"; }
+    td:nth-of-type(4):before { content: "ราคารวม:"; }
+    td:nth-of-type(5):before { content: "จัดการ:"; }
+    
+    /* Purchase History Labels (เพิ่มสำหรับไฟล์ purchase_history.php) */
+    tr td:nth-of-type(1):before { content: "รูป:"; }
+    tr td:nth-of-type(2):before { content: "สินค้า:"; }
+    tr td:nth-of-type(3):before { content: "ราคาที่ซื้อ:"; }
+    tr td:nth-of-type(4):before { content: "วันที่/เวลาซื้อ:"; }
+    tr td:nth-of-type(5):before { content: "ดาวน์โหลด:"; }
+
+    /* Admin/User Management Labels (เพิ่มสำหรับไฟล์ admin_dashboard.php) */
+    tr td:nth-of-type(1):before { content: "ID / Username:"; }
+    tr td:nth-of-type(2):before { content: "Point ปัจจุบัน:"; }
+    tr td:nth-of-type(3):before { content: "ปรับ Point:"; }
+    tr td:nth-of-type(4):before { content: "Role:"; }
+    tr td:nth-of-type(5):before { content: "จัดการสิทธิ์:"; }
+    
+    /* แก้ไขการแสดงผลสำหรับ Chat Messages (ให้ข้อความเต็มความกว้าง) */
+    .chat-message {
+        width: 100% !important; 
+        float: none !important;
+    }
+}
+
+/* NEW: ปรับให้ Product Card ย่อลงเล็กน้อยเมื่อจอใหญ่แต่ไม่เกิน 1200px */
+@media (min-width: 769px) and (max-width: 1200px) {
+     .product-card {
+        width: calc(33.33% - 14px); /* แสดง 3 คอลัมน์ */
+        max-width: none;
+    }
+}
